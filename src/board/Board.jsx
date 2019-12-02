@@ -1,9 +1,10 @@
 import React from 'react';
+import SectionsPanel from './sectionspanel/SectionsPanel';
 
 const Board = () => {
   return (
     <div>
-        BOARD
+        <SectionsPanel/>
     </div>
   );
 }
