@@ -43,3 +43,9 @@ export const StyledImage = styled.img(props => ({
     height:'15px',
     position:'relative'
 }));
+
+export const StyledQuestionSelectionContainer = styled.div(props => ({
+    backgroundColor: 'orange',
+    height: '300px',
+    width: '300px',
+}));

@@ -3,9 +3,9 @@ import Board from '../board/Board';
 import { SETTINGS } from '../utils/Settings';
 
 const Wrapper = () => {
-    //const [currentVisualState, setCurrentVisualState] = useState('');
+    const [currentVisualState, setCurrentVisualState] = useState('');
     const [listOfSections, setListOfSections] = useState([]);
-    //const [currentSectionIndex, setCurrentSectionIndex] = useState(-1);
+    const [currentSectionIndex, setCurrentSectionIndex] = useState(-1);
 
     const onAddSection = () => {
         const newSection = {
@@ -48,8 +48,11 @@ const Wrapper = () => {
                 onClickDestroySection(event.payload.indexClicked)
                 break;
             case SETTINGS.CLICK_ON_ADD_QUESTION:
-                //setCurrentSectionIndex(event.payload.indexClicked);
-                //setCurrentVisualState(SETTINGS.ADDING_QUESTION_STATE);
+                setCurrentSectionIndex(event.payload.indexClicked);
+                setCurrentVisualState(SETTINGS.ADDING_QUESTION_STATE);
+                break;
+            case SETTINGS.DISMISS_QUESTION_EVENT:
+                setCurrentVisualState('');
                 break;
         }
     }
@@ -57,6 +60,7 @@ const Wrapper = () => {
     return (
         <Board 
             listOfSections={listOfSections}
+            currentVisualState = {currentVisualState}
             onChange={onChange}>
         </Board>
     )
