@@ -49,3 +49,23 @@ export const StyledQuestionSelectionContainer = styled.div(props => ({
     height: '300px',
     width: '300px',
 }));
+
+export const StyledQuestionText = styled.input(props => ({
+    padding: '0.5em',
+    margin: '0.5em',
+    width:'200px',
+    color: 'palevioletred',
+    background: 'papayawhip',
+    border: '1px solid grey',
+}));
+
+export const StyledSaveAnswerContainer = styled.button(props => ({
+    backgroundColor: 'green',
+}));
+
+export const StyledTypeSelectionAnswer = styled.button(props => ({
+    backgroundColor: `${props.colorValue}`,
+    height: '20px',
+    width: '300px',
+}));
+

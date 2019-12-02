@@ -1,10 +1,23 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import SectionsPanel from './sectionspanel/SectionsPanel';
 import QuestionsPanel from './questionspanel/QuestionsPanel';
 import { StyledBoard } from '../styles';
 import { SETTINGS } from '../utils/Settings';
 
 const Board = ({listOfSections, currentVisualState, onChange}) => {
+  const [questionTypes, setQuestionTypes] = useState([]);
+  
+  async function fetchData() {
+    const res = await fetch('question_types_response.json');
+    res
+        .json()
+        .then(data => {
+            setQuestionTypes(data);
+        });
+  }
+  useEffect(() => {
+      fetchData()
+  }, []);
 
   let panel;
   if (currentVisualState === '') {
@@ -46,10 +59,22 @@ const Board = ({listOfSections, currentVisualState, onChange}) => {
       />
     } else if (currentVisualState === SETTINGS.ADDING_QUESTION_STATE) {
       panel = 
-        <QuestionsPanel onDismissQuestion={() => onChange(
+        <QuestionsPanel 
+          questionTypes={questionTypes}
+          onDismissQuestion={() => onChange(
             {
               name:SETTINGS.DISMISS_QUESTION_EVENT,
               payload: {}
+            }
+          )}
+          onSaveQuestion={(questionText, questionType, extraValues) => onChange(
+            {
+              name:SETTINGS.SAVE_QUESTION, 
+              payload: {
+                questionText,
+                questionType,
+                extraValues
+              }
             }
           )}
         />

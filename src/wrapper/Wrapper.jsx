@@ -18,6 +18,32 @@ const Wrapper = () => {
         setListOfSections(newListOfSections);
     }
 
+    const onAddQuestion = (payload) => {
+        const newListOfSections = [...listOfSections];
+        newListOfSections.map((section) => {
+            if(section.id === currentSectionIndex) {
+                if (payload.questionType === 'boolean') {
+                    section.questions.push({
+                        index: section.questions.length,
+                        title: payload.questionText,
+                        type: payload.questionType,
+                        extraValues: payload.extraValues
+                    });
+                } else if (payload.questionType === 'input'){
+                    section.questions.push({
+                        index: section.questions.length,
+                        title: payload.questionText,
+                        type: payload.questionType,
+                        extraValues: payload.extraValues
+                    });
+                }
+                
+            }
+        });
+        setListOfSections(newListOfSections);
+        setCurrentVisualState('');
+    }
+
     const changeSectionTitle = (sectionTitle, indexClicked) => {
         const newListOfSections = [...listOfSections];
         newListOfSections.map((section) => {
@@ -53,6 +79,9 @@ const Wrapper = () => {
                 break;
             case SETTINGS.DISMISS_QUESTION_EVENT:
                 setCurrentVisualState('');
+                break;
+            case SETTINGS.SAVE_QUESTION:
+                onAddQuestion(event.payload);
                 break;
         }
     }

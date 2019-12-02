@@ -1,0 +1,16 @@
+[
+    {
+      "type": "boolean",
+      "name": "Boolean Question",
+      "fields": [
+        "answers"
+      ]
+    },
+    {
+      "type": "input",
+      "name": "Input Question",
+      "fields": [
+        "max_characters"
+      ]
+    }
+  ]

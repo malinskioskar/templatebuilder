@@ -9,7 +9,9 @@ export const SETTINGS = {
     "ADDING_QUESTION_STATE":"addingQuestionState",
     "ADD_SECTION_BUTTON_TYPE":"addSectionButtonType",
     "ADD_QUESTION_BUTTON_TYPE":"addQuestionButtonType",
-    'DISMISS_QUESTION_EVENT':"dismissQuestion"
+    'DISMISS_QUESTION_EVENT':"dismissQuestion",
+    'QUESTION_PLACEHOLDER':"Question here...",
+    'SAVE_QUESTION':"Save Question",
     
     
 
