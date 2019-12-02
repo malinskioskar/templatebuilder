@@ -3,9 +3,11 @@ import { StyledSection, StyledTitleText, StyledImage, StyledImageContainer } fro
 import closeImage from '../removeIcon.png';
 import { SETTINGS } from '../../utils/Settings';
 import Button from '../../buttons/Button';
+import GeneralQuestion from './GeneralQuestion';
 
-const Section = ({index, title, isOpen, onChangeSectionTitle, onClickDestroy, onClickAddQuestion}) => {
+const Section = ({index, title, isOpen, questions, onChangeSectionTitle, onClickDestroy, onClickAddQuestion}) => {
   let addQuestionButton;
+  let listOfQuestions;
   if (isOpen) {
     addQuestionButton = 
     <Button 
@@ -13,15 +15,20 @@ const Section = ({index, title, isOpen, onChangeSectionTitle, onClickDestroy, on
       onClick={() => {onClickAddQuestion(index)}}
       buttonType={SETTINGS.ADD_QUESTION_BUTTON_TYPE}
     />
+    listOfQuestions = questions.map(question => 
+      <GeneralQuestion 
+        key={question.index}
+        title={question.title}
+        type={question.type}
+      />
+    )
   }
   return (
     <div>
         <StyledSection>
-          <StyledImageContainer onClick={()=> onClickDestroy(index)}>
-              <StyledImage 
-                src={closeImage} 
-              />
-          </StyledImageContainer>
+            <StyledImage onClick={()=> onClickDestroy(index)}
+              src={closeImage} 
+            />
           <StyledTitleText 
               placeholder={title}
               onChange={(event) => {
@@ -29,6 +36,7 @@ const Section = ({index, title, isOpen, onChangeSectionTitle, onClickDestroy, on
               }}
           />
         </StyledSection>
+        {listOfQuestions}
         {addQuestionButton}
     </div>
   );

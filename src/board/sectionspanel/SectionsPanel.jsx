@@ -13,6 +13,7 @@ const SectionsPanel = ({listOfSections, onAddSection, onChangeSectionTitle, onCl
             index={section.id}
             title={section.title}
             isOpen={section.isOpen}
+            questions={section.questions}
             onChangeSectionTitle={(sectionTitle, index) => {
               onChangeSectionTitle(sectionTitle, index)
             }}

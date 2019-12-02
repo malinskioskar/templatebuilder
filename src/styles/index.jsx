@@ -69,3 +69,11 @@ export const StyledTypeSelectionAnswer = styled.button(props => ({
     width: '300px',
 }));
 
+export const StyledGeneralQuestion = styled.div(props => ({
+    backgroundColor: 'pink',
+    width:'auto',
+    height: '20px',
+    marginTop: '0px',
+    marginBottom: '0px',
+}));
+
