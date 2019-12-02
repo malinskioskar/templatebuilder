@@ -1,8 +1,9 @@
 import React from 'react';
-import ButtonAddSection from '../../buttons/ButtonAddSection';
+import Button from '../../buttons/Button';
 import Section from '../sectionspanel/Section';
+import { SETTINGS } from '../../utils/Settings';
 
-const SectionsPanel = ({listOfSections, onAddSection, onChangeSectionTitle, onClickDestroy}) => {
+const SectionsPanel = ({listOfSections, onAddSection, onChangeSectionTitle, onClickDestroy, onClickAddQuestion}) => {
     
   return (
     <div>
@@ -11,15 +12,23 @@ const SectionsPanel = ({listOfSections, onAddSection, onChangeSectionTitle, onCl
             key={section.id}
             index={section.id}
             title={section.title}
+            isOpen={section.isOpen}
             onChangeSectionTitle={(sectionTitle, index) => {
               onChangeSectionTitle(sectionTitle, index)
             }}
             onClickDestroy={indexClicked => {
               onClickDestroy(indexClicked)
             }}
+            onClickAddQuestion={indexClicked => {
+              onClickAddQuestion(indexClicked)
+            }}
         />
       )}
-      <ButtonAddSection title={'Add New Section'} onAddSection={onAddSection}/>
+      <Button 
+        title={SETTINGS.addNewSection}
+        onClick={onAddSection}
+        buttonType={SETTINGS.ADD_SECTION_BUTTON_TYPE}
+      />
     </div>
   );
 }

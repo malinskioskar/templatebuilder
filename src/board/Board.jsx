@@ -32,6 +32,14 @@ const Board = ({listOfSections, onChange}) => {
           }
         }
       )}
+      onClickAddQuestion={(indexClicked) => onChange(
+        {
+          name:SETTINGS.CLICK_ON_ADD_QUESTION,
+          payload: {
+            indexClicked
+          }
+        }
+      )}
     />
   return (
     <StyledBoard>

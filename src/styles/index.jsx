@@ -1,7 +1,12 @@
 import styled from 'styled-components';
 
-export const StyledSectionButton = styled.div(props => ({
+export const StyledButton = styled.div(props => ({
     backgroundColor: 'red',
+    width: 'auto',
+}));
+
+export const StyledGreenButton = styled.div(props => ({
+    backgroundColor: 'green',
     width: 'auto',
 }));
 
@@ -23,6 +28,7 @@ export const StyledSection = styled.div(props => ({
 export const StyledTitleText = styled.input(props => ({
     padding: '0.5em',
     margin: '0.5em',
+    width:'200px',
     color: 'palevioletred',
     background: 'papayawhip',
     border: '1px solid grey',

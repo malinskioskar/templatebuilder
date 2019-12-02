@@ -1,8 +1,19 @@
 import React from 'react';
 import { StyledSection, StyledTitleText, StyledImage, StyledImageContainer } from '../../styles';
 import closeImage from '../removeIcon.png';
+import { SETTINGS } from '../../utils/Settings';
+import Button from '../../buttons/Button';
 
-const Section = ({index, title, onChangeSectionTitle, onClickDestroy}) => {
+const Section = ({index, title, isOpen, onChangeSectionTitle, onClickDestroy, onClickAddQuestion}) => {
+  let addQuestionButton;
+  if (isOpen) {
+    addQuestionButton = 
+    <Button 
+      title={SETTINGS.addNewQuestion}
+      onClick={() => {onClickAddQuestion(index)}}
+      buttonType={SETTINGS.ADD_QUESTION_BUTTON_TYPE}
+    />
+  }
   return (
     <div>
         <StyledSection>
@@ -18,6 +29,7 @@ const Section = ({index, title, onChangeSectionTitle, onClickDestroy}) => {
               }}
           />
         </StyledSection>
+        {addQuestionButton}
     </div>
   );
 }
