@@ -1,11 +1,11 @@
 import React from 'react';
 import { StyledSectionButton } from '../styles';
 
-const ButtonAddSection = () => {
+const ButtonAddSection = ({title, onAddSection}) => {
   return (
     <div>
-        <StyledSectionButton onClick={()=>{console.log('button clicked');}}>
-          {'TITLE'}
+        <StyledSectionButton onClick={onAddSection}>
+          {title}
         </StyledSectionButton>
     </div>
   );
