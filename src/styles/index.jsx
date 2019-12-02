@@ -10,6 +10,11 @@ export const StyledGreenButton = styled.div(props => ({
     width: 'auto',
 }));
 
+export const StyledOrangeButton = styled.div(props => ({
+    backgroundColor: 'orange',
+    width: '100px',
+}));
+
 export const StyledBoard = styled.div(props => ({
     position: 'absolute',
     left:'100px',

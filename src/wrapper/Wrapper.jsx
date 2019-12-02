@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Board from '../board/Board';
 import { SETTINGS } from '../utils/Settings';
+import Button from '../buttons/Button';
 
 const Wrapper = () => {
     const [currentVisualState, setCurrentVisualState] = useState('');
@@ -60,6 +61,10 @@ const Wrapper = () => {
         );
         setListOfSections(newListOfSections);
     }
+
+    const onClickSaveTemplate = () => {
+        setCurrentVisualState('showOutput');
+    }
     
     const onChange = (event) => {
         const eventName = event.name;
@@ -86,12 +91,68 @@ const Wrapper = () => {
         }
     }
 
-    return (
+    let shouldWeShowSaveButton = false;
+    if (listOfSections.length > 0) {
+        listOfSections.map((section) => {
+            if(section.questions.length > 0) {
+                shouldWeShowSaveButton = true;
+            }
+        });
+    }
+    let output;
+    let outputObject = [];
+    if (currentVisualState === 'showOutput') {
+        listOfSections.map((section) => {
+            const questionsList = [];
+            for (let i = 0; i < section.questions.length; i++) {
+                const currentQuestion = section.questions[i];
+                if (currentQuestion.type === 'boolean') {
+                    questionsList.push({
+                        type:currentQuestion.type,
+                        question:currentQuestion.title,
+                        answers:currentQuestion.extraValues
+                    });
+                } else if (currentQuestion.type === 'input') {
+                    questionsList.push({
+                        type:currentQuestion.type,
+                        question:currentQuestion.title,
+                        max_characters:currentQuestion.extraValues[0]
+                    });
+                }
+                
+            }
+            outputObject.push({
+                title:section.title,
+                questions:questionsList
+            });
+        });
+        output = <div>{JSON.stringify(outputObject)}</div>
+    }
+    let saveButton;
+    if (shouldWeShowSaveButton && outputObject.length === 0) {
+        saveButton = 
+            <Button 
+                title={SETTINGS.SAVE_TEMPLATE_BUTTON_TITLE}
+                onClick={onClickSaveTemplate}
+                buttonType={SETTINGS.SAVE_TEMPLATE_BUTTON_TYPE}
+            />
+    }
+
+    let board;
+    if(outputObject.length === 0) {
+    board = 
         <Board 
-            listOfSections={listOfSections}
+            listOfSections = {listOfSections}
             currentVisualState = {currentVisualState}
-            onChange={onChange}>
-        </Board>
+            onChange={onChange}
+        />
+    }
+    return (
+        <div>
+            {board}
+            {saveButton}
+            {output}
+        </div>
     )
 }
 export default Wrapper;

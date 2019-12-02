@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyledButton, StyledGreenButton } from '../styles';
+import { StyledButton, StyledGreenButton, StyledOrangeButton } from '../styles';
 import { SETTINGS } from '../utils/Settings';
 
 const Button = ({title, onClick, buttonType}) => {
@@ -14,6 +14,11 @@ const Button = ({title, onClick, buttonType}) => {
       <StyledGreenButton onClick={onClick}>
           {title}
       </StyledGreenButton>
+  } else if (buttonType === SETTINGS.SAVE_TEMPLATE_BUTTON_TYPE) {
+    button = 
+      <StyledOrangeButton onClick={onClick}>
+          {title}
+      </StyledOrangeButton>
   }
   return (
     <div>
