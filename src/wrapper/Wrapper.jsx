@@ -26,6 +26,13 @@ const Wrapper = () => {
         setListOfSections(newListOfSections);
     }
 
+    const onClickDestroySection = (indexClicked) => {
+        const newListOfSections = listOfSections.filter(
+            (section) => {return section.id !== indexClicked}
+        );
+        setListOfSections(newListOfSections);
+    }
+    
     const onChange = (event) => {
         const eventName = event.name;
         switch(eventName) {
@@ -34,6 +41,9 @@ const Wrapper = () => {
                 break;
             case SETTINGS.CHANGE_SECTION_TITLE:
                 changeSectionTitle(event.payload.sectionTitle, event.payload.indexClicked)
+                break;
+            case SETTINGS.CLICK_ON_DESTROY_SECTION:
+                onClickDestroySection(event.payload.indexClicked)
                 break;
         }
     }

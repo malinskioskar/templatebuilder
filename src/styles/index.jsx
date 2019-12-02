@@ -27,3 +27,13 @@ export const StyledTitleText = styled.input(props => ({
     background: 'papayawhip',
     border: '1px solid grey',
 }));
+
+export const StyledImageContainer = styled.div(props => ({
+
+}));
+
+export const StyledImage = styled.img(props => ({
+    width:'15px',
+    height:'15px',
+    position:'relative'
+}));

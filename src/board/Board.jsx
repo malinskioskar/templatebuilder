@@ -24,6 +24,14 @@ const Board = ({listOfSections, onChange}) => {
           }
         }
       )}
+      onClickDestroy={(indexClicked) => onChange(
+        {
+          name:SETTINGS.CLICK_ON_DESTROY_SECTION,
+          payload: {
+            indexClicked
+          }
+        }
+      )}
     />
   return (
     <StyledBoard>

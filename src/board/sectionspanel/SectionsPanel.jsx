@@ -2,7 +2,7 @@ import React from 'react';
 import ButtonAddSection from '../../buttons/ButtonAddSection';
 import Section from '../sectionspanel/Section';
 
-const SectionsPanel = ({listOfSections, onAddSection, onChangeSectionTitle}) => {
+const SectionsPanel = ({listOfSections, onAddSection, onChangeSectionTitle, onClickDestroy}) => {
     
   return (
     <div>
@@ -13,6 +13,9 @@ const SectionsPanel = ({listOfSections, onAddSection, onChangeSectionTitle}) => 
             title={section.title}
             onChangeSectionTitle={(sectionTitle, index) => {
               onChangeSectionTitle(sectionTitle, index)
+            }}
+            onClickDestroy={indexClicked => {
+              onClickDestroy(indexClicked)
             }}
         />
       )}
