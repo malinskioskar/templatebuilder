@@ -4,6 +4,7 @@ import { SETTINGS } from '../utils/Settings';
 import Button from '../buttons/Button';
 
 const Wrapper = () => {
+    //I HAVENT ADDED FUNCTIONALITY TO EDIT/REARANGE QUESTIONS YET
     const [currentVisualState, setCurrentVisualState] = useState('');
     const [listOfSections, setListOfSections] = useState([]);
     const [currentSectionIndex, setCurrentSectionIndex] = useState(-1);
@@ -12,7 +13,7 @@ const Wrapper = () => {
         const newSection = {
           id:Math.random(),
           title: SETTINGS.initialSectionTitle,
-          isOpen: true,
+          isOpen: true, //TO DO: I added isOpen to allow for collapsing but no time to finalize this functionality
           questions:[],
         }
         const newListOfSections = [...listOfSections, newSection];

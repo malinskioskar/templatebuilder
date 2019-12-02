@@ -14,7 +14,9 @@ export const SETTINGS = {
     'DISMISS_QUESTION_EVENT':"dismissQuestion",
     'QUESTION_PLACEHOLDER':"Question here...",
     'SAVE_QUESTION':"Save Question",
-    
-    
-
 };
+
+//TODO: SPLIT THIS INTO:
+//EVENTS
+//STATE_CONSTS
+//TEXT_CONSTS

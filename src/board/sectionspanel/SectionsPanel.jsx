@@ -4,7 +4,6 @@ import Section from '../sectionspanel/Section';
 import { SETTINGS } from '../../utils/Settings';
 
 const SectionsPanel = ({listOfSections, onAddSection, onChangeSectionTitle, onClickDestroy, onClickAddQuestion}) => {
-    
   return (
     <div>
       {listOfSections.map(section => 
