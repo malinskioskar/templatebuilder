@@ -26,14 +26,14 @@ const Wrapper = () => {
             if(section.id === currentSectionIndex) {
                 if (payload.questionType === 'boolean') {
                     section.questions.push({
-                        index: section.questions.length,
+                        index: Math.random(),
                         title: payload.questionText,
                         type: payload.questionType,
                         extraValues: payload.extraValues
                     });
                 } else if (payload.questionType === 'input'){
                     section.questions.push({
-                        index: section.questions.length,
+                        index: Math.random(),
                         title: payload.questionText,
                         type: payload.questionType,
                         extraValues: payload.extraValues
@@ -56,12 +56,30 @@ const Wrapper = () => {
         setListOfSections(newListOfSections);
     }
 
-    const onClickDestroySection = (indexClicked) => {
+    const onClickDestroySection = (sectionIndex) => {
         const newListOfSections = listOfSections.filter(
-            (section) => {return section.id !== indexClicked}
+            (section) => {return section.id !== sectionIndex}
         );
         setListOfSections(newListOfSections);
     }
+
+    const onClickDestroyQuestion = (sectionIndex, questionIndex) => {
+        const sectionToChange = listOfSections.find(
+            (section) => {return section.id === sectionIndex}
+        );
+        const newListOfQuestions = sectionToChange.questions.filter(
+            (question) => {return question.index !== questionIndex}
+        );
+
+        const newListOfSections = [...listOfSections];
+        newListOfSections.map((section) => {
+            if(section.id === sectionToChange.id) {
+                section.questions = newListOfQuestions;
+            }
+        });
+        setListOfSections(newListOfSections);
+    }
+    
 
     const onClickSaveTemplate = () => {
         setCurrentVisualState('showOutput');
@@ -76,8 +94,12 @@ const Wrapper = () => {
             case SETTINGS.CHANGE_SECTION_TITLE:
                 changeSectionTitle(event.payload.sectionTitle, event.payload.indexClicked)
                 break;
-            case SETTINGS.CLICK_ON_DESTROY_SECTION:
-                onClickDestroySection(event.payload.indexClicked)
+            case SETTINGS.CLICK_ON_DESTROY:
+                if (event.payload.questionIndex === -1) {
+                    onClickDestroySection(event.payload.sectionIndex)
+                } else if (event.payload.questionIndex !== -1) {
+                    onClickDestroyQuestion(event.payload.sectionIndex, event.payload.questionIndex)
+                }
                 break;
             case SETTINGS.CLICK_ON_ADD_QUESTION:
                 setCurrentSectionIndex(event.payload.indexClicked);

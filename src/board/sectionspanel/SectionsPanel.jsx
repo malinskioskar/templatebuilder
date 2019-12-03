@@ -16,8 +16,8 @@ const SectionsPanel = ({listOfSections, onAddSection, onChangeSectionTitle, onCl
             onChangeSectionTitle={(sectionTitle, index) => {
               onChangeSectionTitle(sectionTitle, index)
             }}
-            onClickDestroy={indexClicked => {
-              onClickDestroy(indexClicked)
+            onClickDestroy={(sectionIndex, questionIndex) => {
+              onClickDestroy(sectionIndex, questionIndex)
             }}
             onClickAddQuestion={indexClicked => {
               onClickAddQuestion(indexClicked)

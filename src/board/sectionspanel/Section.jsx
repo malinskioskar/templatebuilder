@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyledSection, StyledTitleText, StyledImage, StyledImageContainer } from '../../styles';
+import { StyledSection, StyledTitleText, StyledImage } from '../../styles';
 import closeImage from '../removeIcon.png';
 import { SETTINGS } from '../../utils/Settings';
 import Button from '../../buttons/Button';
@@ -18,15 +18,18 @@ const Section = ({index, title, isOpen, questions, onChangeSectionTitle, onClick
     listOfQuestions = questions.map(question => 
       <GeneralQuestion 
         key={question.index}
+        index={question.index}
         title={question.title}
         type={question.type}
+        sectionIndex={index}
+        onClickDestroy={(sectionIndex, questionIndex) => onClickDestroy(sectionIndex, questionIndex)}
       />
     )
   }
   return (
     <div>
         <StyledSection>
-            <StyledImage onClick={()=> onClickDestroy(index)}
+            <StyledImage onClick={()=> onClickDestroy(index, -1)}
               src={closeImage} 
             />
           <StyledTitleText 

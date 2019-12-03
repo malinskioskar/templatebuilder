@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { StyledQuestionSelectionContainer, StyledImageContainer, StyledImage, StyledQuestionText } from '../../styles';
+import { StyledQuestionSelectionContainer, StyledImage, StyledQuestionText } from '../../styles';
 import closeImage from '../removeIcon.png';
 import { SETTINGS } from '../../utils/Settings';
 import AnswersSelectionPanel from './AnswersSelectionPanel';
@@ -17,11 +17,9 @@ const QuestionsPanel = ({questionTypes, onDismissQuestion, onSaveQuestion}) => {
 
    return (
     <StyledQuestionSelectionContainer> 
-        <StyledImageContainer onClick={onDismissQuestion}>
-            <StyledImage 
-              src={closeImage} 
-            />
-        </StyledImageContainer>
+        <StyledImage onClick={onDismissQuestion}
+            src={closeImage} 
+        />
         <StyledQuestionText 
             placeholder={SETTINGS.QUESTION_PLACEHOLDER}                 
             onChange={(event) => {

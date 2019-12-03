@@ -4,7 +4,7 @@ export const SETTINGS = {
     "addNewQuestion":"Add Question",
     "ADD_SECTION":"addSection",
     "CHANGE_SECTION_TITLE":"changeSectionTitle",
-    "CLICK_ON_DESTROY_SECTION":"clickOnDestroySection",
+    "CLICK_ON_DESTROY":"clickOnDestroy",
     "CLICK_ON_ADD_QUESTION":"addQuestion",
     "ADDING_QUESTION_STATE":"addingQuestionState",
     "ADD_SECTION_BUTTON_TYPE":"addSectionButtonType",

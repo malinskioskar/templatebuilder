@@ -39,11 +39,12 @@ const Board = ({listOfSections, currentVisualState, onChange}) => {
             }
           }
         )}
-        onClickDestroy={(indexClicked) => onChange(
+        onClickDestroy={(sectionIndex, questionIndex) => onChange(
           {
-            name:SETTINGS.CLICK_ON_DESTROY_SECTION,
+            name:SETTINGS.CLICK_ON_DESTROY,
             payload: {
-              indexClicked
+              sectionIndex,
+              questionIndex
             }
           }
         )}
