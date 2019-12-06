@@ -1,8 +1,9 @@
 import React, {useState, useEffect} from 'react';
 import SectionsPanel from './sectionspanel/SectionsPanel';
 import QuestionsPanel from './questionspanel/QuestionsPanel';
-import { StyledBoard } from '../styles';
+import { StyledBoard, StyledTemplateTitle } from '../styles';
 import { SETTINGS } from '../utils/Settings';
+import { EVENTS } from '../utils/Events';
 
 const Board = ({listOfSections, currentVisualState, onChange}) => {
   const [questionTypes, setQuestionTypes] = useState([]);
@@ -26,13 +27,13 @@ const Board = ({listOfSections, currentVisualState, onChange}) => {
         listOfSections={listOfSections}
         onAddSection={() => onChange(
           {
-            name:SETTINGS.ADD_SECTION,
+            name:EVENTS.ADD_SECTION,
             payload: {}
           }
         )}
         onChangeSectionTitle={(sectionTitle, indexClicked) => onChange(
           {
-            name:SETTINGS.CHANGE_SECTION_TITLE,
+            name:EVENTS.CHANGE_SECTION_TITLE,
             payload: {
               sectionTitle,
               indexClicked
@@ -41,7 +42,7 @@ const Board = ({listOfSections, currentVisualState, onChange}) => {
         )}
         onClickDestroy={(sectionIndex, questionIndex) => onChange(
           {
-            name:SETTINGS.CLICK_ON_DESTROY,
+            name:EVENTS.CLICK_ON_DESTROY,
             payload: {
               sectionIndex,
               questionIndex
@@ -50,7 +51,7 @@ const Board = ({listOfSections, currentVisualState, onChange}) => {
         )}
         onClickAddQuestion={(indexClicked) => onChange(
           {
-            name:SETTINGS.CLICK_ON_ADD_QUESTION,
+            name:EVENTS.CLICK_ON_ADD_QUESTION,
             payload: {
               indexClicked
             }
@@ -64,13 +65,13 @@ const Board = ({listOfSections, currentVisualState, onChange}) => {
           questionTypes={questionTypes}
           onDismissQuestion={() => onChange(
             {
-              name:SETTINGS.DISMISS_QUESTION_EVENT,
+              name:EVENTS.DISMISS_QUESTION_EVENT,
               payload: {}
             }
           )}
           onSaveQuestion={(questionText, questionType, extraValues) => onChange(
             {
-              name:SETTINGS.SAVE_QUESTION, 
+              name:EVENTS.SAVE_QUESTION, 
               payload: {
                 questionText,
                 questionType,
@@ -82,6 +83,9 @@ const Board = ({listOfSections, currentVisualState, onChange}) => {
     }
   return (
     <StyledBoard>
+        <StyledTemplateTitle>
+          {SETTINGS.templateName}
+        </StyledTemplateTitle>
         {panel}
     </StyledBoard>
   );

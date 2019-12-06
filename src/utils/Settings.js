@@ -1,22 +1,20 @@
 export const SETTINGS = {
-    "initialSectionTitle":"Section Name...",
+    "templateName":"Template Name",
+    "initialSectionText":"Section...",
+    "initialSectionTitle":"Section Name:",
+    "initialQuestionTitle":"Question:",
     "addNewSection":"Add New Section",
     "addNewQuestion":"Add Question",
-    "ADD_SECTION":"addSection",
-    "CHANGE_SECTION_TITLE":"changeSectionTitle",
-    "CLICK_ON_DESTROY":"clickOnDestroy",
-    "CLICK_ON_ADD_QUESTION":"addQuestion",
     "ADDING_QUESTION_STATE":"addingQuestionState",
     "ADD_SECTION_BUTTON_TYPE":"addSectionButtonType",
     "ADD_QUESTION_BUTTON_TYPE":"addQuestionButtonType",
     "SAVE_TEMPLATE_BUTTON_TYPE":"saveTemplateButtonType",
-    "SAVE_TEMPLATE_BUTTON_TITLE":"SAVE",
-    'DISMISS_QUESTION_EVENT':"dismissQuestion",
+    "SAVE_TEMPLATE_BUTTON_TITLE":"EXPORT TEMPLATE",
     'QUESTION_PLACEHOLDER':"Question here...",
-    'SAVE_QUESTION':"Save Question",
+    'FIRST_ANSWER_PLACEHOLDER':"First Answer",
+    'SECOND_ANSWER_PLACEHOLDER':"Second Answer",
+    'MAX_CHARACTERS_ANSWER_PLACEHOLDER':"Max Characters",
+    'SELECT_ANSWER_TYPE':"Select Answer Type:",
+    'QUESTION_TEXT_FOR_SECTION':"Question:",
+    'QUESTION_TYPE_FOR_SECTION':"Type:",
 };
-
-//TODO: SPLIT THIS INTO:
-//EVENTS
-//STATE_CONSTS
-//TEXT_CONSTS

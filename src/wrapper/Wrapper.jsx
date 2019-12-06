@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Board from '../board/Board';
 import { SETTINGS } from '../utils/Settings';
+import { EVENTS } from '../utils/Events';
 import Button from '../buttons/Button';
+import { StyledPreOutput } from '../styles';
 
 const Wrapper = () => {
-    //I HAVENT ADDED FUNCTIONALITY TO EDIT/REARANGE QUESTIONS YET
+    //TO DO: ADD FUNCTIONALITY TO EDIT/REARANGE QUESTIONS YET
     const [currentVisualState, setCurrentVisualState] = useState('');
     const [listOfSections, setListOfSections] = useState([]);
     const [currentSectionIndex, setCurrentSectionIndex] = useState(-1);
@@ -12,8 +14,8 @@ const Wrapper = () => {
     const onAddSection = () => {
         const newSection = {
           id:Math.random(),
-          title: SETTINGS.initialSectionTitle,
-          isOpen: true, //TO DO: I added isOpen to allow for collapsing but no time to finalize this functionality
+          title: SETTINGS.initialSectionText,
+          isOpen: true, //TO DO: I added isOpen to allow for collapsing but no time to finalize this functionality yet
           questions:[],
         }
         const newListOfSections = [...listOfSections, newSection];
@@ -81,6 +83,7 @@ const Wrapper = () => {
     }
     
 
+    
     const onClickSaveTemplate = () => {
         setCurrentVisualState('showOutput');
     }
@@ -88,27 +91,27 @@ const Wrapper = () => {
     const onChange = (event) => {
         const eventName = event.name;
         switch(eventName) {
-            case SETTINGS.ADD_SECTION:
+            case EVENTS.ADD_SECTION:
                 onAddSection();
                 break;
-            case SETTINGS.CHANGE_SECTION_TITLE:
+            case EVENTS.CHANGE_SECTION_TITLE:
                 changeSectionTitle(event.payload.sectionTitle, event.payload.indexClicked)
                 break;
-            case SETTINGS.CLICK_ON_DESTROY:
+            case EVENTS.CLICK_ON_DESTROY:
                 if (event.payload.questionIndex === -1) {
                     onClickDestroySection(event.payload.sectionIndex)
                 } else if (event.payload.questionIndex !== -1) {
                     onClickDestroyQuestion(event.payload.sectionIndex, event.payload.questionIndex)
                 }
                 break;
-            case SETTINGS.CLICK_ON_ADD_QUESTION:
+            case EVENTS.CLICK_ON_ADD_QUESTION:
                 setCurrentSectionIndex(event.payload.indexClicked);
                 setCurrentVisualState(SETTINGS.ADDING_QUESTION_STATE);
                 break;
-            case SETTINGS.DISMISS_QUESTION_EVENT:
+            case EVENTS.DISMISS_QUESTION_EVENT:
                 setCurrentVisualState('');
                 break;
-            case SETTINGS.SAVE_QUESTION:
+            case EVENTS.SAVE_QUESTION:
                 onAddQuestion(event.payload);
                 break;
         }
@@ -149,7 +152,8 @@ const Wrapper = () => {
                 questions:questionsList
             });
         });
-        output = <div>{JSON.stringify(outputObject)}</div>
+        
+        output = <StyledPreOutput>{JSON.stringify(outputObject, null, 4)}</StyledPreOutput>;
     }
     let saveButton;
     if (shouldWeShowSaveButton && outputObject.length === 0) {
@@ -170,6 +174,9 @@ const Wrapper = () => {
             onChange={onChange}
         />
     }
+    useEffect(() => {
+        onAddSection();
+    }, []);
     return (
         <div>
             {board}

@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyledSection, StyledTitleText, StyledImage } from '../../styles';
+import { StyledSection, StyledInputText, StyledImage, StyledSectionTitleText } from '../../styles';
 import closeImage from '../removeIcon.png';
 import { SETTINGS } from '../../utils/Settings';
 import Button from '../../buttons/Button';
@@ -29,18 +29,22 @@ const Section = ({index, title, isOpen, questions, onChangeSectionTitle, onClick
   return (
     <div>
         <StyledSection>
-            <StyledImage onClick={()=> onClickDestroy(index, -1)}
+          <StyledImage onClick={()=> onClickDestroy(index, -1)}
               src={closeImage} 
             />
-          <StyledTitleText 
+          <StyledSectionTitleText>
+            {SETTINGS.initialSectionTitle}
+          </StyledSectionTitleText>
+          <StyledInputText 
               placeholder={title}
               onChange={(event) => {
                 onChangeSectionTitle(event.target.value, index);
               }}
           />
+          {listOfQuestions}
+          {addQuestionButton}
         </StyledSection>
-        {listOfQuestions}
-        {addQuestionButton}
+        
     </div>
   );
 }

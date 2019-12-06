@@ -1,5 +1,7 @@
 import React, {useState}  from 'react';
-import { StyledTypeSelectionAnswer, StyledSaveAnswerContainer } from '../../styles';
+import { StyledTypeSelectionAnswer, StyledSaveAnswerButton, StyledAnswerTitleType, StyledAnswerBoolText } from '../../styles';
+import { SETTINGS } from '../../utils/Settings';
+import { EVENTS } from '../../utils/Events';
 
 const AnswersSelectionPanel = ({questionTypes, saveAnswers}) => {
   const [currentAnswerTypeSelection, setCurrentAnswerTypeSelection] = useState('');
@@ -32,43 +34,52 @@ const AnswersSelectionPanel = ({questionTypes, saveAnswers}) => {
   } else if (currentAnswerTypeSelection === 'boolean') {
     typeSelectionAnswer = 
     <div>
-      <input type='text' 
-          placeholder={'First Answer'}
+      <StyledAnswerBoolText type='text' 
+          placeholder={SETTINGS.FIRST_ANSWER_PLACEHOLDER}
           onChange={(event) => {
             setFirstAnswer(event.target.value);
           }}
       />
-      <input type='text' 
-          placeholder={'Second Answer'}
+      <StyledAnswerBoolText type='text' 
+          placeholder={SETTINGS.SECOND_ANSWER_PLACEHOLDER}
           onChange={(event) => {
             setSecondAnswer(event.target.value);
           }}
       />
-      <StyledSaveAnswerContainer onClick={() => {
+      <StyledSaveAnswerButton onClick={() => {
         saveAnswers(currentAnswerTypeSelection, firstAnswer, secondAnswer);
       }}>
-        SAVE
-      </StyledSaveAnswerContainer>
+        {EVENTS.SAVE_QUESTION}
+      </StyledSaveAnswerButton>
     </div>
   } else if (currentAnswerTypeSelection === 'input') {
     typeSelectionAnswer = 
     <div>
-      <input type='text' 
-          placeholder={'Max Characters'}
+      <StyledAnswerBoolText type='text' 
+          placeholder={SETTINGS.MAX_CHARACTERS_ANSWER_PLACEHOLDER}
           onChange={(event) => {
             setMaxCharacters(event.target.value);
           }}
       />
-      <StyledSaveAnswerContainer onClick={() => {
+      <StyledSaveAnswerButton onClick={() => {
         saveAnswers(currentAnswerTypeSelection, maxCharacters);
       }}>
-        SAVE
-      </StyledSaveAnswerContainer>
+        {EVENTS.SAVE_QUESTION}
+      </StyledSaveAnswerButton>
     </div>
   }
+
+  let selectAnswerTypeText;
+  if(currentAnswerTypeSelection === '') {
+    selectAnswerTypeText = 
+    <StyledAnswerTitleType>
+      {SETTINGS.SELECT_ANSWER_TYPE}
+    </StyledAnswerTitleType>
+  }
+
   return (
     <div>
-        <div>SELECT ANSWER TYPE:</div>
+        {selectAnswerTypeText}
         {typeSelectionAnswer}
     </div>
   );
